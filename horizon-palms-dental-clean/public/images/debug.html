@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Debug Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+        .error { color: red; }
+        .success { color: green; }
+        img { max-width: 200px; margin: 10px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Horizon Palms Dental - Image Debug Test</h1>
+    
+    <div class="test-section">
+        <h2>Direct Image Tests</h2>
+        <p>Testing if images load directly:</p>
+        
+        <h3>Logo Image:</h3>
+        <img src="/images/logo.jpg" alt="Logo Test" onload="this.style.border='2px solid green';" onerror="this.style.border='2px solid red'; this.className='error';">
+        <p>Path: /images/logo.jpg</p>
+        <p>Expected: Should show dental practice logo</p>
+        
+        <h3>Dr. Nguyen Headshot:</h3>
+        <img src="/images/dr-nguyen-headshot.jpg" alt="Dr. Nguyen Test" onload="this.style.border='2px solid green';" onerror="this.style.border='2px solid red'; this.className='error';">
+        <p>Path: /images/dr-nguyen-headshot.jpg</p>
+        <p>Expected: Should show Dr. Nguyen's professional headshot</p>
+    </div>
+    
+    <div class="test-section">
+        <h2>File Information</h2>
+        <p><strong>Current Directory:</strong> <span id="current-dir"></span></p>
+        <p><strong>Images in public folder:</strong></p>
+        <ul id="file-list"></ul>
+    </div>
+    
+    <div class="test-section">
+        <h2>Browser Console Tests</h2>
+        <p>Open browser console (F12) to see detailed error messages</p>
+        <button onclick="testImages()">Test Images Programmatically</button>
+        <div id="test-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Alternative Image Paths</h2>
+        <p>Testing different path formats:</p>
+        <img src="./images/logo.jpg" alt="Logo Relative" onload="this.style.border='2px solid green';" onerror="this.style.border='2px solid red';">
+        <img src="../images/logo.jpg" alt="Logo Parent" onload="this.style.border='2px solid green';" onerror="this.style.border='2px solid red';">
+        <img src="logo.jpg" alt="Logo Direct" onload="this.style.border='2px solid green';" onerror="this.style.border='2px solid red';">
+    </div>
+
+    <script>
+        // Display current directory
+        document.getElementById('current-dir').textContent = window.location.pathname;
+        
+        // Test images programmatically
+        function testImages() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<h3>Test Results:</h3>';
+            
+            const images = [
+                '/images/logo.jpg',
+                '/images/dr-nguyen-headshot.jpg',
+                './images/logo.jpg',
+                'logo.jpg'
+            ];
+            
+            images.forEach(src => {
+                const img = new Image();
+                img.onload = function() {
+                    results.innerHTML += `<p class="success">✅ ${src} - Loaded successfully (${this.width}x${this.height})</p>`;
+                };
+                img.onerror = function() {
+                    results.innerHTML += `<p class="error">❌ ${src} - Failed to load</p>`;
+                };
+                img.src = src;
+            });
+        }
+        
+        // Auto-run tests
+        window.onload = function() {
+            console.log('=== HORIZON PALMS DENTAL IMAGE DEBUG ===');
+            console.log('Current path:', window.location.pathname);
+            console.log('Testing image loading...');
+            testImages();
+        };
+    </script>
+</body>
+</html>

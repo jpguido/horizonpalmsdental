@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon Palms Dental - Image Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2d5a27;
+            text-align: center;
+        }
+        .image-test {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .image-test.success {
+            border-color: #4caf50;
+            background-color: #f1f8f4;
+        }
+        .image-test.error {
+            border-color: #f44336;
+            background-color: #fef1f0;
+        }
+        img {
+            max-width: 300px;
+            max-height: 300px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+        }
+        .status {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .success { color: #4caf50; }
+        .error { color: #f44336; }
+        .info { color: #2196f3; }
+        .file-info {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏥 Horizon Palms Dental - Image Display Test</h1>
+        <p style="text-align: center; color: #666;">Testing if images from public directory are accessible and display correctly</p>
+
+        <div class="image-test" id="logo-test">
+            <h2>🦷 Practice Logo Test</h2>
+            <img id="logo-img" src="/images/logo.jpg" alt="Horizon Palms Dental Logo">
+            <div class="status" id="logo-status">Loading...</div>
+            <div class="file-info">File: /images/logo.jpg</div>
+            <p><strong>Expected:</strong> Dental practice logo should appear above</p>
+        </div>
+
+        <div class="image-test" id="headshot-test">
+            <h2>👨‍⚕️ Dr. Nguyen Headshot Test</h2>
+            <img id="headshot-img" src="/images/dr-nguyen-headshot.jpg" alt="Dr. Linda Nguyen">
+            <div class="status" id="headshot-status">Loading...</div>
+            <div class="file-info">File: /images/dr-nguyen-headshot.jpg</div>
+            <p><strong>Expected:</strong> Dr. Nguyen's professional headshot should appear above</p>
+        </div>
+
+        <div class="image-test">
+            <h2>📊 Test Results Summary</h2>
+            <div id="summary"></div>
+        </div>
+
+        <div class="image-test">
+            <h2>🔍 Debug Information</h2>
+            <p><strong>Current URL:</strong> <span id="current-url"></span></p>
+            <p><strong>Current Path:</strong> <span id="current-path"></span></p>
+            <p><strong>Images should be located at:</strong> /images/ (public directory)</p>
+            <p><strong>Test this page at:</strong> <code>yourdomain.com/test-images.html</code></p>
+        </div>
+    </div>
+
+    <script>
+        // Display current URL info
+        document.getElementById('current-url').textContent = window.location.href;
+        document.getElementById('current-path').textContent = window.location.pathname;
+
+        // Test images
+        let testsPassed = 0;
+        let totalTests = 2;
+
+        function testImage(imgId, statusId, testId, src, description) {
+            const img = document.getElementById(imgId);
+            const status = document.getElementById(statusId);
+            const testDiv = document.getElementById(testId);
+
+            img.onload = function() {
+                status.innerHTML = '<span class="success">✅ SUCCESS - Image loaded successfully!</span>';
+                status.innerHTML += `<br>Dimensions: ${this.naturalWidth} × ${this.naturalHeight} pixels`;
+                status.innerHTML += `<br>File size: Loaded (${this.src})`;
+                testDiv.classList.add('success');
+                testsPassed++;
+                updateSummary();
+            };
+
+            img.onerror = function() {
+                status.innerHTML = '<span class="error">❌ ERROR - Image failed to load!</span>';
+                status.innerHTML += `<br>The file may not exist or may be corrupted`;
+                status.innerHTML += `<br>Attempted to load: ${src}`;
+                testDiv.classList.add('error');
+                updateSummary();
+            };
+        }
+
+        function updateSummary() {
+            const summary = document.getElementById('summary');
+            if (testsPassed === totalTests) {
+                summary.innerHTML = '<div class="success">🎉 All images loaded successfully!</div>';
+                summary.innerHTML += '<p>Your images are working correctly and should display on the main website.</p>';
+            } else if (testsPassed + document.querySelectorAll('.error').length === totalTests) {
+                summary.innerHTML = '<div class="error">⚠️ Some images failed to load</div>';
+                summary.innerHTML += '<p>Check that the image files exist in the public/images/ directory and are valid JPG files.</p>';
+            }
+        }
+
+        // Run tests
+        testImage('logo-img', 'logo-status', 'logo-test', '/images/logo.jpg', 'Practice Logo');
+        testImage('headshot-img', 'headshot-status', 'headshot-test', '/images/dr-nguyen-headshot.jpg', 'Dr. Nguyen Headshot');
+
+        // Additional debug info
+        console.log('=== HORIZON PALMS DENTAL IMAGE TEST ===');
+        console.log('Testing image accessibility...');
+        console.log('Current URL:', window.location.href);
+        console.log('Expected image paths:');
+        console.log('- /images/logo.jpg');
+        console.log('- /images/dr-nguyen-headshot.jpg');
+    </script>
+</body>
+</html>
