@@ -129,8 +129,7 @@ export default function PatientResources() {
               <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
                 <h3 className="font-semibold text-green-800 mb-2">Insurance Verification</h3>
                 <p className="text-green-700 text-sm">
-                  We offer complimentary insurance verification. Call us at {businessConfig.phone.office}  
-                  and we'll check your benefits before your appointment.
+                  We offer complimentary insurance verification. Call us at {businessConfig.phone.office} and we'll check your benefits before your appointment.
                 </p>
               </div>
             </div>
