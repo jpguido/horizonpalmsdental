@@ -66,7 +66,7 @@ export default function About() {
             </div>
             <div className="relative">
               {/* Practice photo - Portrait orientation optimized */}
-              <div className="bg-gradient-to-br from-green-100 to-stone-100 rounded-2xl flex items-center justify-center overflow-hidden" style={{ aspectRatio: '3/4', maxHeight: '500px' }}>
+              <div className="bg-gradient-to-br from-green-100 to-stone-100 rounded-2xl flex items-center justify-center overflow-hidden relative" style={{ aspectRatio: '3/4', maxHeight: '500px' }}>
                 <ImageWithFallback 
                   src="/images/practice-photo.jpg" 
                   alt="Horizon Palms Family Dentistry Office"
@@ -75,10 +75,10 @@ export default function About() {
                   className="w-full h-full object-cover rounded-2xl"
                   priority={false}
                 />
+                {/* Decorative elements - positioned relative to the image container */}
+                <div className="absolute -top-4 -right-4 w-20 h-20 bg-green-600 rounded-full opacity-20 pointer-events-none"></div>
+                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-stone-400 rounded-full opacity-20 pointer-events-none"></div>
               </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-green-600 rounded-full opacity-20"></div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-stone-400 rounded-full opacity-20"></div>
             </div>
           </div>
         </div>
