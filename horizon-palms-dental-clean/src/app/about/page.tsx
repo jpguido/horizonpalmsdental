@@ -65,13 +65,13 @@ export default function About() {
               </div>
             </div>
             <div className="relative">
-              {/* Practice photo */}
-              <div className="aspect-video bg-gradient-to-br from-green-100 to-stone-100 rounded-2xl flex items-center justify-center overflow-hidden">
+              {/* Practice photo - Portrait orientation optimized */}
+              <div className="bg-gradient-to-br from-green-100 to-stone-100 rounded-2xl flex items-center justify-center overflow-hidden" style={{ aspectRatio: '3/4', maxHeight: '500px' }}>
                 <ImageWithFallback 
                   src="/images/practice-photo.jpg" 
                   alt="Horizon Palms Family Dentistry Office"
-                  width={600}
-                  height={400}
+                  width={450}
+                  height={600}
                   className="w-full h-full object-cover rounded-2xl"
                   priority={false}
                 />
