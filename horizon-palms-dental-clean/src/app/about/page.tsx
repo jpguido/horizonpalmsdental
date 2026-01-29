@@ -65,14 +65,16 @@ export default function About() {
               </div>
             </div>
             <div className="relative">
-              {/* Practice photo placeholder */}
-              <div className="aspect-video bg-gradient-to-br from-green-100 to-stone-100 rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-stone-200 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-stone-400 text-sm">Practice Photo</span>
-                  </div>
-                  <p className="text-stone-600">Our Welcoming Office</p>
-                </div>
+              {/* Practice photo */}
+              <div className="aspect-video bg-gradient-to-br from-green-100 to-stone-100 rounded-2xl flex items-center justify-center overflow-hidden">
+                <ImageWithFallback 
+                  src="/images/practice-photo.jpg" 
+                  alt="Horizon Palms Family Dentistry Office"
+                  width={600}
+                  height={400}
+                  className="w-full h-full object-cover rounded-2xl"
+                  priority={false}
+                />
               </div>
               {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-green-600 rounded-full opacity-20"></div>
